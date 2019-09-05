@@ -15,7 +15,6 @@ RUN apt-get -y install build-essential cmake gdb git iputils-ping nano perl pyth
 RUN apt-get -y install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
 RUN apt-get -y install zlib1g-dev libssl-dev libnss3-dev libmysqlclient-dev libsqlite3-dev libxslt-dev libxml2-dev libjpeg-dev libpng-dev libopus-dev
 RUN apt-get -y install libxcursor-dev libxcb1-dev libxcb-xkb-dev libx11-xcb-dev libxrender-dev libxi-dev libxcb-xinerama0-dev
-RUN apt-get -y install libicu-dev
 RUN apt-get -y autoremove
 RUN apt-get -y autoclean
 
@@ -25,7 +24,7 @@ RUN wget -q http://download.qt.io/official_releases/qt/5.9/5.9.0/single/qt-every
 RUN tar xf qt-everywhere-opensource-src-5.9.0.tar.xz
 RUN rm qt-everywhere-opensource-src-5.9.0.tar.xz
 WORKDIR /opt/qt-everywhere-opensource-src-5.9.0
-RUN ./configure -opensource -confirm-license -release -static -nomake tests -nomake examples -no-compile-examples
+RUN ./configure -opensource -confirm-license -release -static -nomake tests -nomake examples -no-compile-examples -no-icu
 RUN make -j $(($(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1)+2))
 RUN make install
 RUN cd /opt && rm -rf qt-everywhere-opensource-src-5.9.0
