@@ -1,4 +1,12 @@
 FROM ubuntu:16.04
+ENV UBUNTU_RELEASE_NAME=xenial
+
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $UBUNTU_RELEASE_NAME main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $UBUNTU_RELEASE_NAME-updates main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $UBUNTU_RELEASE_NAME-backports main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $UBUNTU_RELEASE_NAME-security main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
+RUN cat /etc/apt/sources.list
+
 ENTRYPOINT ["/bin/bash"]
 
 # Dependencies
@@ -13,11 +21,11 @@ RUN apt -y autoremove
 RUN apt -y autoclean
 
 # QT
-RUN cd /opt
+WORKDIR /opt
 RUN wget -q http://download.qt.io/official_releases/qt/5.9/5.9.0/single/qt-everywhere-opensource-src-5.9.0.tar.xz
 RUN tar xf qt-everywhere-opensource-src-5.9.0.tar.xz
 RUN rm qt-everywhere-opensource-src-5.9.0.tar.xz
-RUN cd qt-everywhere-opensource-src-5.9.0
+WORKDIR /opt/qt-everywhere-opensource-src-5.9.0
 RUN ./configure -opensource -confirm-license -release -static -nomake tests -nomake examples -no-compile-examples
 RUN make -j $(($(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1)+2))
 RUN make install
