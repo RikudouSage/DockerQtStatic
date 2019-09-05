@@ -5,7 +5,6 @@ RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $UBUNTU_RELEASE_NAME main 
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $UBUNTU_RELEASE_NAME-updates main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $UBUNTU_RELEASE_NAME-backports main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $UBUNTU_RELEASE_NAME-security main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
-RUN cat /etc/apt/sources.list
 
 ENTRYPOINT ["/bin/bash"]
 
