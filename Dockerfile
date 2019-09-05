@@ -29,5 +29,7 @@ RUN make -j $(($(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1)+2))
 RUN make install
 RUN cd /opt && rm -rf qt-everywhere-opensource-src-5.9.0
 
+WORKDIR /
+
 # Path
 ENV PATH="${PATH}:/usr/local/Qt-5.9.0/bin"
