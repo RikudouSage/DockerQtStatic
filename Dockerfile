@@ -11,7 +11,7 @@ ENTRYPOINT ["/bin/bash"]
 # Dependencies
 RUN apt-get -y update
 RUN apt-get -y upgrade
-RUN apt-get -y install build-essential cmake gdb git iputils-ping nano perl python valgrind wget
+RUN apt-get -y install build-essential cmake gdb git iputils-ping nano perl python valgrind wget pkg-config
 RUN apt-get -y install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
 RUN apt-get -y install zlib1g-dev libssl-dev libnss3-dev libmysqlclient-dev libsqlite3-dev libxslt-dev libxml2-dev libjpeg-dev libpng-dev libopus-dev
 RUN apt-get -y install libxcursor-dev libxcb1-dev libxcb-xkb-dev libx11-xcb-dev libxrender-dev libxi-dev libxcb-xinerama0-dev
