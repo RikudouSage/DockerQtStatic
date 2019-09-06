@@ -1,4 +1,4 @@
-A Docker image that builds your apps statically.
+A Docker image that builds your Qt apps statically.
 
 ## Versions
 
