@@ -8,6 +8,7 @@ these tags currently:
 - `latest` - built from current master, can contain code that
 is not yet tested
 - `16.04` - built from Ubuntu Xenial
+- `18.04` - built from Ubuntu Bionic
 
 ## Usage
 
