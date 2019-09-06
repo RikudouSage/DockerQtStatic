@@ -2,19 +2,14 @@ A Docker image that builds your Qt apps statically.
 
 ## Versions
 
-This image is built for supported versions of Ubuntu, you can use
-these tags currently:
-
 - `latest` - built from current master, can contain code that
 is not yet tested
-- `14.04` - built from Ubuntu Trusty
-- `16.04` - built from Ubuntu Xenial
-- `18.04` - built from Ubuntu Bionic
+- `5.9.0` - built from Ubuntu Xenial
 
 ## Usage
 
 Change into the directory that your project is in and run
-`docker run --rm -it -v $(pwd):/app rikudousage/qt-static:16.04`.
+`docker run --rm -it -v $(pwd):/app rikudousage/qt-static:5.9.0`.
 
 This will create a new container that will be removed once you
 exit from it and will link the current directory to the container
@@ -27,7 +22,7 @@ command with `-c` flag.
 
 Example:
 
-`docker run --rm -it -v $(pwd):/app rikudousage/qt-static:16.04 -c
+`docker run --rm -it -v $(pwd):/app rikudousage/qt-static:5.9.0 -c
 "cd /app && qmake && make"`.
 
 The image contains statically compiled version of Qt 5.9.0 without
