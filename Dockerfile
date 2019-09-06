@@ -1,5 +1,5 @@
-FROM ubuntu:16.04
-ENV UBUNTU_RELEASE_NAME=xenial
+FROM ubuntu:18.04
+ENV UBUNTU_RELEASE_NAME=bionic
 
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $UBUNTU_RELEASE_NAME main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $UBUNTU_RELEASE_NAME-updates main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
@@ -20,16 +20,16 @@ RUN apt-get -y autoclean
 
 # Qt
 WORKDIR /opt
-RUN wget -q http://download.qt.io/official_releases/qt/5.9/5.9.0/single/qt-everywhere-opensource-src-5.9.0.tar.xz
-RUN tar xf qt-everywhere-opensource-src-5.9.0.tar.xz
-RUN rm qt-everywhere-opensource-src-5.9.0.tar.xz
-WORKDIR /opt/qt-everywhere-opensource-src-5.9.0
+RUN wget -q https://download.qt.io/official_releases/qt/5.13/5.13.1/single/qt-everywhere-src-5.13.1.tar.xz
+RUN tar xf qt-everywhere-src-5.13.1.tar.xz
+RUN rm qt-everywhere-src-5.13.1.tar.xz
+WORKDIR /opt/qt-everywhere-src-5.13.1
 RUN ./configure -opensource -confirm-license -release -static -nomake tests -nomake examples -no-compile-examples -no-icu
 RUN make -j $(($(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1)+2))
 RUN make install
-RUN cd /opt && rm -rf qt-everywhere-opensource-src-5.9.0
+RUN cd /opt && rm -rf qt-everywhere-src-5.13.1
 
 WORKDIR /
 
 # Path
-ENV PATH="${PATH}:/usr/local/Qt-5.9.0/bin"
+ENV PATH="${PATH}:/usr/local/Qt-5.13.1/bin"
