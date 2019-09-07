@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/_common.php';
+
+trackAllBranches();
+
+passthru('git checkout master');
+
+foreach (getBranches() as $branch) {
+    passthru("git checkout {$branch}");
+
+    passthru("git merge master", $exitCode);
+    if ($exitCode !== 0) {
+        echo "Failed to merge branch 'master' to '{$branch}'";
+        exit(1);
+    }
+}
+
+passthru('git checkout master');
