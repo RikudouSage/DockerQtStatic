@@ -12,6 +12,8 @@ $branches = (function (): array {
     return $data;
 })();
 
+natsort($branches);
+
 unset($branches[array_search('master', $branches)]);
 
 $map = [];
