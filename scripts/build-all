@@ -1,6 +1,10 @@
 #!/usr/bin/env php
 <?php
 
+require_once __DIR__ . '/_common.php';
+
+trackAllBranches();
+
 $push = isset($argv[1]) && $argv[1] === '--push';
 
 $branches = (function (): array {
