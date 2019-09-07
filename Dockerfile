@@ -20,7 +20,7 @@ RUN apt-get -y autoclean
 
 # Qt
 WORKDIR /opt
-RUN wget -q http://download.qt.io/official_releases/qt/5.9/5.9.0/single/qt-everywhere-opensource-src-5.9.0.tar.xz
+RUN wget -q https://download.qt.io/official_releases/qt/5.9/5.9.0/single/qt-everywhere-opensource-src-5.9.0.tar.xz
 RUN tar xf qt-everywhere-opensource-src-5.9.0.tar.xz
 RUN rm qt-everywhere-opensource-src-5.9.0.tar.xz
 WORKDIR /opt/qt-everywhere-opensource-src-5.9.0
