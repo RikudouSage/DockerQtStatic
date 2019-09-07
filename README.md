@@ -2,9 +2,9 @@ A Docker image that builds your Qt apps statically.
 
 ## Versions
 
-- `latest` - built from current master, can contain code that
-is not yet tested
+- `latest` - the latest version of Qt available in this image
 - `5.9.0` - built from Ubuntu Xenial
+- `5.13.1` - built from Ubuntu Bionic
 
 ## Usage
 
