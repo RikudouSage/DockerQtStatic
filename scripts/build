@@ -1,0 +1,91 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/_common.php';
+
+trackAllBranches();
+
+$push = false;
+
+$versions = [];
+
+if ($argc === 1) {
+    $versions[] = '*';
+} else {
+    foreach ($argv as $key => $argument) {
+        if ($key === 0) {
+            continue;
+        }
+        if ($argument === '--push') {
+            $push = true;
+            continue;
+        }
+        if (fnmatch('*.*.*', $argument)) {
+            $versions[] = $argument;
+        } elseif (fnmatch('*.*', $argument)) {
+            $versions[] = "{$argument}.*";
+        } elseif ($argument === 'all') {
+            $versions[] = '*';
+        } else {
+            echo "Unknown argument '{$argument}'", PHP_EOL;
+            exit(1);
+        }
+    }
+}
+
+if (!count($versions)) {
+    $versions[] = '*';
+}
+
+$branches = (function () use ($versions) {
+    $allBranches = getBranches();
+    $result = [];
+
+    foreach ($allBranches as $branch) {
+        foreach ($versions as $version) {
+            if (fnmatch($version, $branch) || fnmatch($version, substr($branch, 1))) {
+                $result[] = $branch;
+            }
+        }
+    }
+
+    return $result;
+})();
+
+natsort($branches);
+
+$map = [];
+if (in_array('*', $versions, true)) {
+    $map['latest']['latest'] = '';
+}
+
+foreach ($branches as $branch) {
+    $version = substr($branch, 1);
+    $baseVersion = preg_replace('@(\d+\.\d+)\.\d+@', '$1', $version);
+    if (!isset($map[$baseVersion])) {
+        $map[$baseVersion] = [];
+    }
+
+    $map[$baseVersion][$version] = $branch;
+    if (in_array('*', $versions, true)) {
+        $map[$baseVersion][$baseVersion] = $branch;
+    }
+}
+
+if (isset($map['latest']['latest'])) {
+    $lastMap = end($map);
+    $map['latest']['latest'] = end($lastMap);
+}
+
+var_dump($map, $push);
+exit;
+
+foreach ($map as $baseVersion => $versions) {
+    foreach ($versions as $version => $branch) {
+        passthru("git checkout {$branch}", $exitCode);
+        passthru("docker build -t rikudousage/qt-static:{$version} .");
+        if ($push) {
+            passthru("docker push rikudousage/qt-static:{$version}");
+        }
+    }
+}
