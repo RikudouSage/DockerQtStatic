@@ -24,7 +24,7 @@ function getRemoteBranches(): array
     }, explode(PHP_EOL, $raw)));
 
     $data = array_filter($data, function (string $branch): bool {
-        return fnmatch("remotes/origin/*", $branch);
+        return fnmatch("remotes/origin/*", $branch) && !fnmatch('remotes/origin/HEAD*', $branch);
     });
 
     return $data;
