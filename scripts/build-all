@@ -20,7 +20,11 @@ natsort($branches);
 
 unset($branches[array_search('master', $branches)]);
 
-$map = [];
+$map = [
+    'latest' => [
+        'latest' => ''
+    ]
+];
 
 foreach ($branches as $branch) {
     $version = substr($branch, 1);
@@ -32,6 +36,9 @@ foreach ($branches as $branch) {
     $map[$baseVersion][$version] = $branch;
     $map[$baseVersion][$baseVersion] = $branch;
 }
+
+$lastMap = end($map);
+$map['latest']['latest'] = end($lastMap);
 
 foreach ($map as $baseVersion => $versions) {
     foreach ($versions as $version => $branch) {
