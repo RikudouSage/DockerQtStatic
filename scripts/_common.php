@@ -7,11 +7,10 @@ function getBranches(bool $includeMaster = false): array
         return trim(str_replace('*', '', $branch));
     }, explode(PHP_EOL, $raw)));
 
-    if (!$includeMaster) {
-        $data = array_filter($data, function (string $branch): bool {
-            return $branch !== 'master';
-        });
-    }
+
+    $data = array_filter($data, function (string $branch) use($includeMaster) {
+        return fnmatch('v*.*.*', $branch) || ($includeMaster && $branch === 'master');
+    });
 
     return $data;
 }
