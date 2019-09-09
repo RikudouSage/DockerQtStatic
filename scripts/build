@@ -77,9 +77,6 @@ if (isset($map['latest']['latest'])) {
     $map['latest']['latest'] = end($lastMap);
 }
 
-var_dump($map, $push);
-exit;
-
 foreach ($map as $baseVersion => $versions) {
     foreach ($versions as $version => $branch) {
         passthru("git checkout {$branch}", $exitCode);
