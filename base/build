@@ -3,6 +3,8 @@
 
 chdir(__DIR__);
 
+$push = in_array('--push', $argv);
+
 $versions = [
     '16.04' => 'xenial',
     '18.04' => 'bionic',
@@ -13,6 +15,8 @@ foreach ($versions as $version => $codename) {
      -t rikudousage/qt-static-base:{$version} .");
 }
 
-foreach ($versions as $version => $codename) {
-    passthru("docker push rikudousage/qt-static-base:{$version}");
+if ($push) {
+    foreach ($versions as $version => $codename) {
+        passthru("docker push rikudousage/qt-static-base:{$version}");
+    }
 }

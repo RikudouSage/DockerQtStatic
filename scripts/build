@@ -37,6 +37,8 @@ if (!count($versions)) {
     $versions[] = '*';
 }
 
+passthru(__DIR__ . '/../base/build' . ($push ? '--push' : ''));
+
 $branches = (function () use ($versions) {
     $allBranches = getBranches();
     $result = [];
