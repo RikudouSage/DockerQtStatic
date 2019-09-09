@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+$versions = [
+    '16.04' => 'xenial',
+    '18.04' => 'bionic',
+];
+
+foreach ($versions as $version => $codename) {
+    passthru("docker build --build-arg VERSION={$version} --build-arg CODENAME={$codename} \\
+     -t rikudousage/qt-static-base:{$version} .");
+}
+
+foreach ($versions as $version => $codename) {
+    passthru("docker push rikudousage/qt-static-base:{$version}");
+}
