@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+chdir(__DIR__);
+
 $versions = [
     '16.04' => 'xenial',
     '18.04' => 'bionic',
