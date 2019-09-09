@@ -5,6 +5,9 @@ require_once __DIR__ . '/_common.php';
 
 trackAllBranches();
 
+passthru('docker pull rikudousage/qt-static-base:16.04');
+passthru('docker pull rikudousage/qt-static-base:18.04');
+
 $push = false;
 
 $versions = [];
@@ -36,8 +39,6 @@ if ($argc === 1) {
 if (!count($versions)) {
     $versions[] = '*';
 }
-
-passthru(__DIR__ . '/../base/build' . ($push ? '--push' : ''));
 
 $branches = (function () use ($versions) {
     $allBranches = getBranches();
