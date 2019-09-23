@@ -83,6 +83,7 @@ if (isset($map['latest']['latest'])) {
 foreach ($map as $baseVersion => $versions) {
     foreach ($versions as $version => $branch) {
         passthru("git checkout {$branch}", $exitCode);
+        passthru("git pull origin {$branch}");
         passthru("docker build -t rikudousage/qt-static:{$version} .");
         if ($push) {
             passthru("docker push rikudousage/qt-static:{$version}");
