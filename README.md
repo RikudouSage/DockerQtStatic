@@ -29,6 +29,7 @@ Only currently supported Qt versions are updated.
 - `5.12.2` - Ubuntu Xenial
 - `5.12.3` - Ubuntu Xenial
 - `5.12.4` - Ubuntu Bionic
+- `5.12.5` - Ubuntu Bionic
 - `5.13.0` - Ubuntu Bionic
 - `5.13.1` - Ubuntu Bionic
 
