@@ -4,13 +4,13 @@ ENTRYPOINT ["/bin/bash"]
 
 # Qt
 WORKDIR /opt
-RUN wget -q https://download.qt.io/official_releases/qt/5.9/5.9.0/single/qt-everywhere-opensource-src-5.9.0.tar.xz
-RUN tar xf qt-everywhere-opensource-src-5.9.0.tar.xz
-RUN rm qt-everywhere-opensource-src-5.9.0.tar.xz
+RUN wget -q https://download.qt.io/official_releases/qt/5.9/5.9.0/single/qt-everywhere-opensource-src-5.9.0.tar.xz && \
+    tar xf qt-everywhere-opensource-src-5.9.0.tar.xz && \
+    rm qt-everywhere-opensource-src-5.9.0.tar.xz
 WORKDIR /opt/qt-everywhere-opensource-src-5.9.0
-RUN ./configure -opensource -confirm-license -release -static -nomake tests -nomake examples -no-compile-examples -no-icu -qt-xcb
-RUN make -j $(($(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1)+2))
-RUN make install
+RUN ./configure -opensource -confirm-license -release -static -nomake tests -nomake examples -no-compile-examples -no-icu -qt-xcb && \
+    make -j $(($(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1)+2)) && \
+    make install
 RUN cd /opt && rm -rf qt-everywhere-opensource-src-5.9.0
 
 WORKDIR /
