@@ -12,7 +12,7 @@ Only currently supported Qt versions are updated.
 - `latest` - the latest version of Qt available
 
 - `5.9` - latest 5.9.x version available (Xenial)
-- `5.12` - latest 5.12.x version available (Xenial/Bionic)
+- `5.12` - latest 5.12.x version available (Bionic)
 - `5.13` - latest 5.13.x version available (Bionic)
 
 - `5.9.0` - Ubuntu Xenial
@@ -32,6 +32,7 @@ Only currently supported Qt versions are updated.
 - `5.12.5` - Ubuntu Bionic
 - `5.13.0` - Ubuntu Bionic
 - `5.13.1` - Ubuntu Bionic
+- `5.13.2` - Ubuntu Bionic
 
 ## Usage
 
