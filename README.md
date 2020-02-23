@@ -14,25 +14,31 @@ Only currently supported Qt versions are updated.
 - `5.9` - latest 5.9.x version available (Xenial)
 - `5.12` - latest 5.12.x version available (Bionic)
 - `5.13` - latest 5.13.x version available (Bionic)
+- `5.14` - latest 5.14.x version available (Bionic)
 
-- `5.9.0` - Ubuntu Xenial
-- `5.9.1` - Ubuntu Xenial
-- `5.9.2` - Ubuntu Xenial
-- `5.9.3` - Ubuntu Xenial
-- `5.9.4` - Ubuntu Xenial
-- `5.9.5` - Ubuntu Xenial
-- `5.9.6` - Ubuntu Xenial
-- `5.9.7` - Ubuntu Xenial
-- `5.9.8` - Ubuntu Xenial
-- `5.12.0` - Ubuntu Xenial
-- `5.12.1` - Ubuntu Xenial
-- `5.12.2` - Ubuntu Xenial
-- `5.12.3` - Ubuntu Xenial
-- `5.12.4` - Ubuntu Bionic
-- `5.12.5` - Ubuntu Bionic
-- `5.13.0` - Ubuntu Bionic
-- `5.13.1` - Ubuntu Bionic
-- `5.13.2` - Ubuntu Bionic
+- `5.9.0` 
+- `5.9.1` 
+- `5.9.2` 
+- `5.9.3` 
+- `5.9.4` 
+- `5.9.5` 
+- `5.9.6` 
+- `5.9.7`
+- `5.9.8`
+- `5.9.9`
+- `5.12.0`
+- `5.12.1`
+- `5.12.2`
+- `5.12.3` - Last Ubuntu Xenial version
+- `5.12.4` - First Ubuntu Bionic version
+- `5.12.5`
+- `5.12.6`
+- `5.12.7`
+- `5.13.0`
+- `5.13.1`
+- `5.13.2`
+- `5.14.0`
+- `5.14.1`
 
 ## Usage
 
