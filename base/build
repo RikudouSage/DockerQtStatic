@@ -10,13 +10,21 @@ $versions = [
     '18.04' => 'bionic',
 ];
 
+$i = 1;
 foreach ($versions as $version => $codename) {
-    passthru("docker build --build-arg VERSION={$version} --build-arg CODENAME={$codename} \\
-     -t rikudousage/qt-static-base:{$version} .");
-}
-
-if ($push) {
-    foreach ($versions as $version => $codename) {
+    $command = 'docker build --build-arg VERSION=%s --build-arg CODENAME=%s \\
+     -t rikudousage/qt-static-base:%s .';
+    passthru(sprintf($command, $version, $codename, $version));
+    if ($push) {
         passthru("docker push rikudousage/qt-static-base:{$version}");
     }
+
+    if ($i === count($versions)) {
+        passthru(sprintf($command, $version, $codename, 'latest'));
+        if ($push) {
+            passthru('docker push rikudousage/qt-static-base:latest');
+        }
+    }
+
+    ++$i;
 }
