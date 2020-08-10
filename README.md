@@ -5,7 +5,7 @@ A Docker image that builds your Qt apps statically.
 All images are created using LTS versions of Ubuntu.
 Generally speaking, Qt versions that support libssl 1.0
 are built on 16.04 (xenial), those that support libssl 1.1
-are built on 18.04 (bionic).
+are built on 18.04 (bionic), starting from version 5.15 20.04 (focal) is used.
 
 Only currently supported Qt versions are updated.
 
@@ -15,6 +15,7 @@ Only currently supported Qt versions are updated.
 - `5.12` - latest 5.12.x version available (Bionic)
 - `5.13` - latest 5.13.x version available (Bionic)
 - `5.14` - latest 5.14.x version available (Bionic)
+- `5.15` - latest 5.15.x version available (Focal)
 
 - `5.9.0` 
 - `5.9.1` 
@@ -41,7 +42,8 @@ Only currently supported Qt versions are updated.
 - `5.13.2`
 - `5.14.0`
 - `5.14.1`
-- `5.14.2`
+- `5.14.2` - Last Ubuntu Bionic version
+- `5.15.0` - First Ubuntu Focal version
 
 ## Usage
 
@@ -62,5 +64,4 @@ Example:
 `docker run --rm -it -v $(pwd):/app rikudousage/qt-static:5.9.0 -c
 "cd /app && qmake && make"`.
 
-The image contains statically compiled version of Qt 5.9.0 without
-ICU support.
+

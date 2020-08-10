@@ -39,3 +39,19 @@ function trackAllBranches()
         }
     }
 }
+
+function lastArrayElement(array $array)
+{
+    return end($array);
+}
+
+function lastArrayKey(array $array)
+{
+    if (function_exists('array_key_last')) {
+        /** @noinspection PhpElementIsNotAvailableInCurrentPhpVersionInspection */
+        return array_key_last($array);
+    }
+
+    $keys = array_keys($array);
+    return end($keys);
+}
