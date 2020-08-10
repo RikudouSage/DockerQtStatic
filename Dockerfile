@@ -17,3 +17,4 @@ WORKDIR /
 
 # Path
 ENV PATH="${PATH}:/usr/local/Qt-5.15.0/bin"
+
