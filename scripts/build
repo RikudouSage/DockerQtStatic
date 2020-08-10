@@ -7,6 +7,7 @@ trackAllBranches();
 
 $push = false;
 $pull = true;
+$checkout = true;
 
 $versions = [];
 
@@ -23,6 +24,10 @@ if ($argc === 1) {
         }
         if ($argument === '--no-pull') {
             $pull = false;
+            continue;
+        }
+        if ($argument === '--no-checkout') {
+            $checkout = false;
             continue;
         }
         if (fnmatch('*.*.*', $argument)) {
@@ -93,7 +98,9 @@ passthru('docker pull rikudousage/qt-static-base:18.04');
 
 foreach ($map as $baseVersion => $versions) {
     foreach ($versions as $version => $branch) {
-        passthru("git checkout {$branch}", $exitCode);
+        if ($checkout) {
+            passthru("git checkout {$branch}", $exitCode);
+        }
         if ($pull) {
             passthru("git pull origin {$branch}");
         }
