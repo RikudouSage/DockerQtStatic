@@ -93,8 +93,10 @@ if (isset($map['latest']['latest'])) {
     $map['latest']['latest'] = end($lastMap);
 }
 
-passthru('docker pull rikudousage/qt-static-base:16.04');
-passthru('docker pull rikudousage/qt-static-base:18.04');
+if ($pull) {
+    passthru('docker pull rikudousage/qt-static-base:16.04');
+    passthru('docker pull rikudousage/qt-static-base:18.04');
+}
 
 foreach ($map as $baseVersion => $versions) {
     foreach ($versions as $version => $branch) {
