@@ -5,6 +5,8 @@ on:
       - 'v5.*.*'
     paths:
       - 'Dockerfile'
+      - 'scripts/build'
+      - '.github/workflows/branch.yaml'
 
 jobs:
   build-image:
