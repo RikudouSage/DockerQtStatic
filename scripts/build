@@ -61,19 +61,12 @@ $branches = (function () use ($versions, $allBranches) {
 
     return $result;
 })();
+//$branches[] = 'v5.15.1';
 
 natsort($allBranches);
 natsort($branches);
 
 $map = [];
-if (
-    in_array('*', $versions, true)
-    || count($versions) === 1 && count($branches) === 1 && (
-        fnmatch($versions[0], $branches[0]) || fnmatch($versions[0], substr($branches[0], 1))
-    )
-) {
-    $map['latest']['latest'] = '';
-}
 
 foreach ($branches as $branch) {
     $version = substr($branch, 1);
@@ -82,15 +75,17 @@ foreach ($branches as $branch) {
         $map[$baseVersion] = [];
     }
 
+    preg_match('@v([0-9])\.([0-9]+)\.([0-9]+)@', $branch, $matches);
+    $nextMinor = $matches[3] + 1;
     $map[$baseVersion][$version] = $branch;
-    if (in_array('*', $versions, true)) {
+    if (!in_array("v{$matches[1]}.{$matches[2]}.{$nextMinor}", $allBranches, true)) {
         $map[$baseVersion][$baseVersion] = $branch;
     }
 }
 
-if (isset($map['latest']['latest'])) {
-    $lastMap = end($map);
-    $map['latest']['latest'] = end($lastMap);
+$last = $map[lastArrayKey($map)];
+if (in_array(lastArrayElement($allBranches), $last, true)) {
+    $map['latest']['latest'] = $last[array_search(lastArrayElement($allBranches), $last)];
 }
 
 if ($pull) {
