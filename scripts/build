@@ -6,6 +6,8 @@ require_once __DIR__ . '/_common.php';
 trackAllBranches();
 
 $push = false;
+$pull = true;
+$checkout = true;
 
 $versions = [];
 
@@ -18,6 +20,14 @@ if ($argc === 1) {
         }
         if ($argument === '--push') {
             $push = true;
+            continue;
+        }
+        if ($argument === '--no-pull') {
+            $pull = false;
+            continue;
+        }
+        if ($argument === '--no-checkout') {
+            $checkout = false;
             continue;
         }
         if (fnmatch('*.*.*', $argument)) {
@@ -88,8 +98,12 @@ passthru('docker pull rikudousage/qt-static-base:18.04');
 
 foreach ($map as $baseVersion => $versions) {
     foreach ($versions as $version => $branch) {
-        passthru("git checkout {$branch}", $exitCode);
-        passthru("git pull origin {$branch}");
+        if ($checkout) {
+            passthru("git checkout {$branch}", $exitCode);
+        }
+        if ($pull) {
+            passthru("git pull origin {$branch}");
+        }
         passthru("docker build -t rikudousage/qt-static:{$version} .");
         if ($push) {
             passthru("docker push rikudousage/qt-static:{$version}");
