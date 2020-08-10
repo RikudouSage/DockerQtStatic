@@ -2,9 +2,9 @@ name: Build Image
 on:
   push:
     branches:
-      - 'v5.15.*' # todo replace once tested
-#    paths:
-#      - 'Dockerfile' # todo trigger only on dockerfile change once tested
+      - 'v5.*.*'
+    paths:
+      - 'Dockerfile'
 
 jobs:
   build-image:
