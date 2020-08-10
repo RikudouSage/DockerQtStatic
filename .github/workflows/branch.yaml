@@ -17,4 +17,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.2
       - name: Build
-        run: cd scripts && ./build ${GITHUB_REF##*/} --push --no-pull
+        run: ./scripts/build ${GITHUB_REF##*/} --push --no-pull --no-checkout
