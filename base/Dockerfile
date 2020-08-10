@@ -1,11 +1,13 @@
 ARG VERSION
 FROM ubuntu:$VERSION
 ARG CODENAME
+ARG TZ=Europe/Prague
 
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $CODENAME main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $CODENAME-updates main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $CODENAME-backports main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt $CODENAME-security main restricted universe multiverse\n$(cat /etc/apt/sources.list)" > /etc/apt/sources.list
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Dependencies
 RUN apt-get -y update && \
