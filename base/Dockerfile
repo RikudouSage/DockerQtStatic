@@ -17,5 +17,6 @@ RUN apt-get -y update && \
     apt-get -y install zlib1g-dev libssl-dev libnss3-dev libmysqlclient-dev libsqlite3-dev libxslt-dev libxml2-dev libjpeg-dev libpng-dev libopus-dev && \
     apt-get -y install libxcursor-dev libxcb1-dev libxcb-xkb-dev libx11-xcb-dev libxrender-dev libxi-dev libxcb-xinerama0-dev && \
     apt-get -y install libfontconfig1-dev libfreetype6-dev libxkbcommon-x11-dev libxkbcommon-dev && \
+    apt-get -y install libxcb-*-dev && \
     apt-get -y autoremove && \
     apt-get -y autoclean
