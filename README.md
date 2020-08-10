@@ -15,7 +15,6 @@ Only currently supported Qt versions are updated.
 - `5.12` - latest 5.12.x version available (Bionic)
 - `5.13` - latest 5.13.x version available (Bionic)
 - `5.14` - latest 5.14.x version available (Bionic)
-- `5.15` - latest 5.15.x version available (Bionic)
 
 - `5.9.0` 
 - `5.9.1` 
@@ -43,7 +42,6 @@ Only currently supported Qt versions are updated.
 - `5.14.0`
 - `5.14.1`
 - `5.14.2`
-- `5.15.0`
 
 ## Usage
 
