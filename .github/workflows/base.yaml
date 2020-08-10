@@ -5,12 +5,17 @@ on:
       - master
     paths:
       - 'base/**'
+      - '.github/workflows/base.yaml'
 
 jobs:
   build-images:
     runs-on: ubuntu-latest
+    env:
+      DOCKER_ACCESS_KEY: ${{ secrets.DOCKER_ACCESS_TOKEN }}
     steps:
+      - name: Docker Login
+        run: echo $DOCKER_ACCESS_KEY | docker login --username rikudousage --password-stdin
       - name: Checkout
         uses: actions/checkout@v2.3.2
       - name: Build
-        run: cd base && ./build
+        run: cd base && ./build --push
