@@ -5,9 +5,6 @@ require_once __DIR__ . '/_common.php';
 
 trackAllBranches();
 
-passthru('docker pull rikudousage/qt-static-base:16.04');
-passthru('docker pull rikudousage/qt-static-base:18.04');
-
 $push = false;
 
 $versions = [];
@@ -40,8 +37,8 @@ if (!count($versions)) {
     $versions[] = '*';
 }
 
-$branches = (function () use ($versions) {
-    $allBranches = getBranches();
+$allBranches = getBranches();
+$branches = (function () use ($versions, $allBranches) {
     $result = [];
 
     foreach ($allBranches as $branch) {
@@ -55,10 +52,16 @@ $branches = (function () use ($versions) {
     return $result;
 })();
 
+natsort($allBranches);
 natsort($branches);
 
 $map = [];
-if (in_array('*', $versions, true)) {
+if (
+    in_array('*', $versions, true)
+    || count($versions) === 1 && count($branches) === 1 && (
+        fnmatch($versions[0], $branches[0]) || fnmatch($versions[0], substr($branches[0], 1))
+    )
+) {
     $map['latest']['latest'] = '';
 }
 
@@ -79,6 +82,9 @@ if (isset($map['latest']['latest'])) {
     $lastMap = end($map);
     $map['latest']['latest'] = end($lastMap);
 }
+
+passthru('docker pull rikudousage/qt-static-base:16.04');
+passthru('docker pull rikudousage/qt-static-base:18.04');
 
 foreach ($map as $baseVersion => $versions) {
     foreach ($versions as $version => $branch) {
