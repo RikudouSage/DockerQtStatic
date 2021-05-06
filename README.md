@@ -44,6 +44,7 @@ Only currently supported Qt versions are updated.
 - `5.14.1`
 - `5.14.2` - Last Ubuntu Bionic version
 - `5.15.0` - First Ubuntu Focal version
+- `5.15.1`
 
 ## Usage
 
