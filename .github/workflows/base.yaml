@@ -6,6 +6,7 @@ on:
     paths:
       - 'base/**'
       - '.github/workflows/base.yaml'
+  workflow_dispatch:
 
 jobs:
   build-images:
