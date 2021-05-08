@@ -2,7 +2,7 @@ name: Build Image
 on:
   push:
     branches:
-      - 'v5.*.*'
+      - 'v*.*.*'
     paths:
       - 'Dockerfile'
       - 'scripts/build'
