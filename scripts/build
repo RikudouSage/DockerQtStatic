@@ -89,21 +89,21 @@ if (in_array(lastArrayElement($allBranches), $last, true)) {
 }
 
 if ($pull) {
-    passthru('docker pull rikudousage/qt-static-base:16.04');
-    passthru('docker pull rikudousage/qt-static-base:18.04');
+    runCommand('docker pull rikudousage/qt-static-base:16.04');
+    runCommand('docker pull rikudousage/qt-static-base:18.04');
 }
 
 foreach ($map as $baseVersion => $versions) {
     foreach ($versions as $version => $branch) {
         if ($checkout) {
-            passthru("git checkout {$branch}", $exitCode);
+            runCommand("git checkout {$branch}");
         }
         if ($pull) {
-            passthru("git pull origin {$branch}");
+            runCommand("git pull origin {$branch}");
         }
-        passthru("docker build -t rikudousage/qt-static:{$version} .");
+        runCommand("docker build -t rikudousage/qt-static:{$version} .");
         if ($push) {
-            passthru("docker push rikudousage/qt-static:{$version}");
+            runCommand("docker push rikudousage/qt-static:{$version}");
         }
     }
 }
