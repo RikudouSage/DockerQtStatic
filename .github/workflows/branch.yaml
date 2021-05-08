@@ -1,24 +1,24 @@
-name: Build Image
-on:
-  push:
-    branches:
-      - 'v*.*.*'
-    paths:
-      - 'Dockerfile'
-      - 'scripts/build'
-      - '.github/workflows/branch.yaml'
-  workflow_dispatch:
-
-jobs:
-  build-image:
-    runs-on: ubuntu-latest
-    env:
-      DOCKER_ACCESS_KEY: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-    steps:
-      - name: Docker Login
-        run: echo $DOCKER_ACCESS_KEY | docker login --username rikudousage --password-stdin
-      - name: Checkout
-        uses: actions/checkout@v2.3.2
-      - name: Build
-        run: ./scripts/build ${GITHUB_REF##*/} --push --no-pull --no-checkout
-
+#name: Build Image
+#on:
+#  push:
+#    branches:
+#      - 'v*.*.*'
+#    paths:
+#      - 'Dockerfile'
+#      - 'scripts/build'
+#      - '.github/workflows/branch.yaml'
+#  workflow_dispatch:
+#
+#jobs:
+#  build-image:
+#    runs-on: ubuntu-latest
+#    env:
+#      DOCKER_ACCESS_KEY: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+#    steps:
+#      - name: Docker Login
+#        run: echo $DOCKER_ACCESS_KEY | docker login --username rikudousage --password-stdin
+#      - name: Checkout
+#        uses: actions/checkout@v2.3.2
+#      - name: Build
+#        run: ./scripts/build ${GITHUB_REF##*/} --push --no-pull --no-checkout
+#
