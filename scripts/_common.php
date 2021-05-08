@@ -48,10 +48,17 @@ function lastArrayElement(array $array)
 function lastArrayKey(array $array)
 {
     if (function_exists('array_key_last')) {
-        /** @noinspection PhpElementIsNotAvailableInCurrentPhpVersionInspection */
         return array_key_last($array);
     }
 
     $keys = array_keys($array);
     return end($keys);
+}
+
+function runCommand(string $command): void {
+    passthru($command, $exitCode);
+    if ($exitCode !== 0) {
+        echo 'Running command failed.', PHP_EOL;
+        exit(1);
+    }
 }
