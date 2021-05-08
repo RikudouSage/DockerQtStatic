@@ -23,7 +23,8 @@ Only currently supported Qt versions are updated.
 - `5.12.6`
 - `5.12.7`
 - `5.12.8`
-- `5.12.9` - Last Ubuntu Bionic version
+- `5.12.9`
+- `5.12.10` - Last Ubuntu Bionic version 
 - `5.15.0` - First Ubuntu Focal version
 - `5.15.1`
 - `5.15.2`
@@ -31,7 +32,7 @@ Only currently supported Qt versions are updated.
 ## Usage
 
 Change into the directory that your project is in and run
-`docker run --rm -it -v $(pwd):/app rikudousage/qt-static:5.9.0`.
+`docker run --rm -it -v $(pwd):/app rikudousage/qt-static:5.15`.
 
 This will create a new container that will be removed once you
 exit from it and will link the current directory to the container
@@ -44,7 +45,7 @@ command with `-c` flag.
 
 Example:
 
-`docker run --rm -it -v $(pwd):/app rikudousage/qt-static:5.9.0 -c
+`docker run --rm -it -v $(pwd):/app rikudousage/qt-static:5.15 -c
 "cd /app && qmake && make"`.
 
 
